@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Timeline;
+using UnityEngine.UI;
 
 public class WaveSpawners : MonoBehaviour
 {
@@ -18,6 +21,9 @@ public class WaveSpawners : MonoBehaviour
     private float tempsWaves = 5f;
 
     private float compteARebourd = 2f;
+
+    [SerializeField]
+    private Text compteAReboursTimer;
 
     private int waveIndex = 1;
 
@@ -39,6 +45,7 @@ public class WaveSpawners : MonoBehaviour
         }
 
         compteARebourd -= Time.deltaTime;
+        compteAReboursTimer.text = Mathf.Floor(compteARebourd).ToString();
     }
 
     // Apparition des ennemis
@@ -61,6 +68,9 @@ public class WaveSpawners : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation); ;
+        Transform obj=Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation); 
+    
+            
+
     }
 }
